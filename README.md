@@ -42,6 +42,9 @@ The goal of this project is to:
 
 Developer → Docker Build → Tag Image → Push Image → Amazon ECR → Lifecycle Policy → Automatic Cleanup
 
+
+<img width="1536" height="1024" alt="ChatGPT Image Mar 28, 2026, 01_04_40 PM" src="https://github.com/user-attachments/assets/6be7de9e-5ad2-43ab-abb6-d7c7253422ac" />
+
 ---
 
 # Step 1: Create Private ECR Repository
@@ -61,6 +64,16 @@ Configuration:
 Repository URI Example:
 
 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo
+<img width="1872" height="1180" alt="project3 1" src="https://github.com/user-attachments/assets/b1dd0a2d-5235-4b4e-8d00-eaf327f88ec8" />
+
+
+
+
+
+
+<img width="1871" height="1180" alt="project3 2" src="https://github.com/user-attachments/assets/1f60c18b-61d5-4829-9fa3-745def0d2692" />
+
+
 
 ---
 
@@ -72,9 +85,29 @@ Instance configuration:
 * OS: **Ubuntu 22.04**
 * Storage: **8 GB**
 
+
+
+<img width="1878" height="1167" alt="project3 3" src="https://github.com/user-attachments/assets/50985cdb-7397-4462-91c8-52850bdbc593" />
+
+
+
 Connect via SSH:
 
-ssh -i key.pem ubuntu@<public-ip>
+# ssh -i key.pem ubuntu@<public-ip>
+
+
+
+
+
+<img width="1658" height="1166" alt="Screenshot 2026-03-13 115729" src="https://github.com/user-attachments/assets/1cbbd413-cd6f-4aa7-8b9c-b48cfd55e0a2" />
+
+
+
+
+
+
+
+
 
 ---
 
@@ -100,6 +133,12 @@ unzip awscliv2.zip
 
 sudo ./aws/install
 
+
+
+
+<img width="1864" height="1188" alt="Screenshot 2026-03-13 115829" src="https://github.com/user-attachments/assets/3862af9f-b6d4-476b-a7fe-e57ccefc9bc3" />
+
+
 ---
 
 # Step 4: Configure AWS CLI
@@ -117,6 +156,17 @@ Verify configuration:
 
 aws sts get-caller-identity
 
+
+
+<img width="1808" height="1168" alt="Screenshot 2026-03-13 120428" src="https://github.com/user-attachments/assets/8602ae98-5772-4e32-94f0-157ab21006c3" />
+
+
+
+
+<img width="1483" height="771" alt="Screenshot 2026-03-13 120737" src="https://github.com/user-attachments/assets/b33f6e48-d2d0-4de4-8bf2-9ddbaa170baf" />
+
+
+
 ---
 
 # Step 5: Authenticate Docker with ECR
@@ -126,6 +176,16 @@ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --p
 Expected output:
 
 Login Succeeded
+
+
+
+
+
+
+<img width="1478" height="764" alt="Screenshot 2026-03-13 121549" src="https://github.com/user-attachments/assets/b18ea10a-600c-432a-9b06-88d54e7dc6b6" />
+
+
+
 
 ---
 
@@ -144,17 +204,34 @@ Verify image
 
 docker images
 
+
+<img width="1489" height="771" alt="Screenshot 2026-03-13 121112" src="https://github.com/user-attachments/assets/15e3160e-880e-46a6-8cf5-ac0e0d144fc8" />
+
+
+
+
+
 ---
 
 # Step 7: Tag Image for ECR
 
 docker tag myapp:v1 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v1
 
+
+
+
+<img width="1920" height="1200" alt="Screenshot 2026-03-13 124933" src="https://github.com/user-attachments/assets/a91f7a87-4dff-4792-9ecb-9a9edf9b565f" />
+
+
+
 ---
 
 # Step 8: Push Image to ECR
 
 docker push 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v1
+
+
+<img width="1920" height="1200" alt="Screenshot 2026-03-13 122617" src="https://github.com/user-attachments/assets/6e3a95ae-8ecf-4773-a82e-ba0d69c5589f" />
 
 ---
 
@@ -166,11 +243,23 @@ docker push 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v2
 docker tag myapp:v1 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v3
 docker push 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v3
 
+
+<img width="1920" height="1200" alt="Screenshot 2026-03-13 123201" src="https://github.com/user-attachments/assets/b56d2f87-376a-4e18-9198-4fda097cd448" />
+
+
 docker tag myapp:v1 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v4
 docker push 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v4
 
 docker tag myapp:v1 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v5
 docker push 183192392395.dkr.ecr.ap-south-1.amazonaws.com/my-private-repo:v5
+
+
+
+<img width="1854" height="988" alt="Screenshot 2026-03-13 123337" src="https://github.com/user-attachments/assets/897cce28-53d1-44df-a716-046581633acb" />
+
+
+
+
 
 ---
 
@@ -208,6 +297,21 @@ Lifecycle Policy JSON:
 ]
 }
 
+<img width="1920" height="1140" alt="Screenshot 2026-03-13 123959" src="https://github.com/user-attachments/assets/0cffb21c-b70c-4dff-aa5a-0a1b5af61dd4" />
+
+<img width="1920" height="1200" alt="Screenshot 2026-03-13 124019" src="https://github.com/user-attachments/assets/eb984fe5-cfba-4156-8895-bebcb73114aa" />
+
+<img width="1920" height="1140" alt="Screenshot 2026-03-13 124055" src="https://github.com/user-attachments/assets/7eb9db53-52e9-434a-94dd-5935892dacaa" />
+
+
+
+<img width="1847" height="961" alt="Screenshot 2026-03-13 124157" src="https://github.com/user-attachments/assets/97d0f1ec-64a5-43f9-9c76-f020a710c395" />
+
+
+
+
+
+
 ---
 
 # Lifecycle Policy Result
@@ -235,6 +339,13 @@ v3
 
 This prevents **storage bloat and improves image governance**.
 
+
+<img width="1920" height="1200" alt="Screenshot 2026-03-13 123300" src="https://github.com/user-attachments/assets/5b1892f0-3b2d-4c53-a498-7df8406af664" />
+
+
+
+
+
 ---
 
 # Security Validation
@@ -246,15 +357,6 @@ Security controls implemented:
 * AES-256 encryption enabled
 * Image vulnerability scanning enabled
 * Lifecycle policy for automatic cleanup
-
----
-
-# Screenshots
-
-1. ECR repository creation
-2. Docker images pushed (v1–v6)
-3. Lifecycle policy rule
-4. Lifecycle policy preview
 
 ---
 
