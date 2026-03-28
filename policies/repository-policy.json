@@ -1,0 +1,21 @@
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowPushPullForAuthorizedUser",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<your-account-id>:user/ecr-user"
+      },
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:CompleteLayerUpload",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage",
+        "ecr:UploadLayerPart"
+      ]
+    }
+  ]
+}
